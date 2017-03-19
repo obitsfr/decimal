@@ -550,7 +550,7 @@ func (d Decimal) Round(places int32) Decimal {
 // 	   NewFromFloat(8.5).Round(0).String() // output: "8"
 //
 func (d Decimal) RoundFair(places int32) Decimal {
-	shift := big.NewInt(abs(int64(places)-int64(d.exp)) - 1)
+	shift := big.NewInt(int64(math.Abs(float64(places)-float64(d.exp)) - 1))
 
 	// First, truncate the number to see if there are trailing decimal places.
 	// If there are it can't end in 5.
