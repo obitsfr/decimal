@@ -393,11 +393,12 @@ func (d Decimal) Pow(d2 Decimal) Decimal {
 	return temp.Mul(temp).Div(d)
 }
 
-// Cmp compares the numbers represented by d and d2 and returns:
+// Cmp compares the numbers represented by d and d2.
 //
-//     -1 if d <  d2
-//      0 if d == d2
-//     +1 if d >  d2
+// It returns:
+//     negative, if d < d2
+//     zero    , if d == d2
+//     positive, if d >  d2
 //
 func (d Decimal) Cmp(d2 Decimal) int {
 	d.ensureInitialized()
@@ -412,6 +413,17 @@ func (d Decimal) Cmp(d2 Decimal) int {
 	rd2 := d2.rescale(baseExp)
 
 	return rd.value.Cmp(rd2.value)
+}
+
+// Compare compares the numbers represented by d and d2.
+//
+// It returns:
+//     negative, if d < d2
+//     zero    , if d == d2
+//     positive, if d >  d2
+//
+func (d Decimal) Compare(d2 Decimal) int {
+	return d.Cmp(d2)
 }
 
 // Equal returns whether the numbers represented by d and d2 are equal.

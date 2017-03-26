@@ -1393,6 +1393,15 @@ func TestDecimal_Cmp2(t *testing.T) {
 	}
 }
 
+func TestDecimal_Compare(t *testing.T) {
+	a := New(123, 3)
+	b := New(-1234, 2)
+
+	if a.Compare(b) != 1 {
+		t.Errorf("Error")
+	}
+}
+
 func TestPow(t *testing.T) {
 	a := New(4, 0)
 	b := New(2, 0)
